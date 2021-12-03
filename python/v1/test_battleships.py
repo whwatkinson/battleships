@@ -1,4 +1,5 @@
-from python.functions import *
+from python.v1.functions import *
+from python.v1.classes import Ship, Ocean
 
 
 class TestBattleship:

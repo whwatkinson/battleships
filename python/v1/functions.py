@@ -1,5 +1,5 @@
 from random import randint
-from python.classes import Ship, Fleet, Ocean
+from python.v1.classes import Ship, Fleet, Ocean
 
 
 def create_clean_fleet():

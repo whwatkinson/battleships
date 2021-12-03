@@ -1,5 +1,8 @@
-from python.functions import *
-from python.classes import Ocean, Ship, Fleet
+from python.v1.functions import (
+    create_clean_fleet,
+    randomly_place_all_ships,
+)
+from python.v1.classes import Ocean, Ship
 
 
 def main():
