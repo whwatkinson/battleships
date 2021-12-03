@@ -1,5 +1,5 @@
-from functions import *
-from classes import Ocean, Ship, Fleet
+from python.functions import *
+from python.classes import Ocean, Ship, Fleet
 
 
 def main():
@@ -10,13 +10,11 @@ def main():
     bd = randomly_place_all_ships(new_fleet, o)
     playing = bd.fleet.are_unsunk_ships_left()
 
-
-    print('\n**********************')
-    print('Welcome to Battleships')
-    print('**********************')
+    print("\n**********************")
+    print("Welcome to Battleships")
+    print("**********************")
 
     shots = 0
-
 
     while playing:
 
@@ -26,15 +24,22 @@ def main():
             while guess:
 
                 try:
-                    loc_str = input("Enter row and colum to shoot (separted by space): ").split()
+                    loc_str = input(
+                        "Enter row and colum to shoot (separted by space): "
+                    ).split()
                     current_row = int(loc_str[0])
                     current_column = int(loc_str[1])
 
-                    if isinstance(current_row, int) and isinstance(current_column, int) and current_row <=9 and current_column <= 9:
+                    if (
+                        isinstance(current_row, int)
+                        and isinstance(current_column, int)
+                        and current_row <= 9
+                        and current_column <= 9
+                    ):
                         guess = False
 
                 except ValueError:
-                    print('Not a valid input, please try again\n')
+                    print("Not a valid input, please try again\n")
                     continue
 
             shots += 1
@@ -60,23 +65,20 @@ def main():
 
             else:
                 marker = False
-                print('You missed!')
+                print("You missed!")
                 bd.update_display_ocean(current_row, current_column, marker)
-
-
 
             bd.pretty_print_display_ocean()
             bd.pretty_print_ocean()
             playing = bd.fleet.are_unsunk_ships_left()
 
-
         except IndexError:
-            print('Whoops, please try again.\n')
+            print("Whoops, please try again.\n")
             continue
 
+    print("Player wins")
+    print("\n You took {shots}".format(shots=shots))
 
-    print('Player wins')
-    print('\n You took {shots}'.format(shots=shots))
 
-if __name__ == '__main__':
-   main()
+if __name__ == "__main__":
+    main()

@@ -1,5 +1,5 @@
 from random import randint
-from classes import Ship, Fleet, Ocean
+from python.classes import Ship, Fleet, Ocean
 
 
 def create_clean_fleet():
@@ -13,11 +13,22 @@ def create_clean_fleet():
         hits = []
         coor = []
 
-        ships.append(Ship(id=id, row=row, column=column, horizontal=horizontal_random, length=length, hits=hits, coor=coor))
+        ships.append(
+            Ship(
+                id=id,
+                row=row,
+                column=column,
+                horizontal=horizontal_random,
+                length=length,
+                hits=hits,
+                coor=coor,
+            )
+        )
 
     fleet = Fleet(ships)
 
     return fleet
+
 
 def is_open_sea(row, column, board):
 
@@ -28,14 +39,16 @@ def is_open_sea(row, column, board):
         if board[row][column] != marker:
             return False
 
-        elif board[row - 1][column - 1] == marker and \
-            board[row - 1][column] == marker and \
-            board[row - 1][column + 1] == marker and \
-            board[row][column - 1] == marker and \
-            board[row][column + 1] == marker and \
-            board[row + 1][column - 1] == marker and \
-            board[row + 1][column] == marker and \
-            board[row + 1][column + 1] == marker:
+        elif (
+            board[row - 1][column - 1] == marker
+            and board[row - 1][column] == marker
+            and board[row - 1][column + 1] == marker
+            and board[row][column - 1] == marker
+            and board[row][column + 1] == marker
+            and board[row + 1][column - 1] == marker
+            and board[row + 1][column] == marker
+            and board[row + 1][column + 1] == marker
+        ):
 
             return True
 
@@ -44,6 +57,7 @@ def is_open_sea(row, column, board):
 
     except IndexError:
         return False
+
 
 def ok_to_place_ship_at(input, board):
 
@@ -54,6 +68,7 @@ def ok_to_place_ship_at(input, board):
 
     else:
         return False
+
 
 def place_ship_at(row, column, horizontal, length, board, ship):
 
@@ -67,6 +82,7 @@ def place_ship_at(row, column, horizontal, length, board, ship):
             ship.coor.append((str(i + row) + str(column)))
 
     return board
+
 
 def get_random_coor(ship):
 
@@ -134,7 +150,14 @@ def randomly_place_all_ships(fleet, ocean):
 
                 ship.row = random_coor[0]
                 ship.column = random_coor[1]
-                place_ship_at(row=ship.row, column=ship.column, horizontal=ship.horizontal, length=ship.length, board=ocean, ship=ship)
+                place_ship_at(
+                    row=ship.row,
+                    column=ship.column,
+                    horizontal=ship.horizontal,
+                    length=ship.length,
+                    board=ocean,
+                    ship=ship,
+                )
                 ship_list.append(ship)
                 place_ship = False
 
